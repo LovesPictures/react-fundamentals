@@ -17,3 +17,51 @@
 <!-- 🐨 Append the div to the root div using `append` -->
 <!--   💰 document.getElementById('root') -->
 <!--   📜 https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append -->
+
+<html>
+<!-- option 1  -->
+<body>
+    <div id="root"></div>
+
+    <script type="module">
+        const root = document.getElementById('root');
+        const div = document.createElement('div');
+
+        div.textContent = 'Hello World';
+        div.className = 'container';
+        root.append(div);
+    </script>
+</body>
+
+</html>
+<!--     
+    Notes: 
+    create the root container in the HTML
+ in the Script tag, create the div and set the textContent and className  
+    1. script tag set to module. 
+    2. getElementById('root') is the root container.
+    3. createElement('div') is the div to be appended to the root container.
+    4.set the textContent to 'Hello World' 
+    5. className to 'container'
+    6. append or attach the div to the root container.
+
+    
+Modules are a way of splitting up and accessing Javascript programmes into separate chunks to be access when needed. 
+-->
+
+<html>
+    <!-- option 2 -->
+<body>
+    <script type="module">
+        const rootElement = document.createElement('div');
+        rootElement.setAttribute('id', 'root');
+        document.append.body(`rootElement`);
+        
+        const element = document.createElement(`div`);
+        element.textContent = 'Hello World';
+        element.className = 'container';
+        rootElement.append(element);
+    </script>
+</body>
+</html>
+
