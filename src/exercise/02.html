@@ -4,26 +4,58 @@
 <body>
   <div id="root"></div>
 
-  <!-- 🐨 add React and ReactDOM on the page.
-       💰 Here are script tags that'll do the job:
+  <!-- 🐨 1) add React and ReactDOM on the page using the universal react Module package using the script tags: -->
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <!-- 2) This brings in ReactDOM and we call .render() -->
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
-  -->
+
 
   <script type="module">
+    //get the root element the browser is creating in the HTML
     const rootElement = document.getElementById('root')
 
-    // You're going to re-implement this code using React!
-    // 💣 So go ahead and delete this implementation (or comment it out for now)
-    // These three lines are similar to React.createElement
-    const element = document.createElement('div')
-    element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
-    element.className = 'container' // 💰 in React, this is also called the "className" prop
-    // This is similar to ReactDOM.createRoot().render()
-    rootElement.append(element)
+    /*Note: 
+    create a react element using:
+    createElement - first argument div - second argument are the {props}
+    element is a UI descriptor object that creates a description of the type of UI we want to have created
+    when we call the ReactDOM.render() API it appends that 'element' to the page     
+*/
 
-    // 🐨 Please re-implement the regular document.createElement code above
-    // with these React API calls
-    // 💰 The example in the markdown file should be a good hint for you.
+// 1) - creates the element - Children can have a number of arguments inc arrays
+
+   
+    // 2)  - puts it on the element on the DOM
+
+    const helloElement = React.createElement ( 'span',null, 'Hello2 ')
+    const worldElement = React.createElement ('span', {children: 'World2 '})
+     // render the declaration
+    const element = React.createElement(
+      // div root element + children 
+      "div", 
+      {
+        className: 'Container', 
+      },
+      helloElement,
+      '',
+      worldElement,
+    )
+
+    console.log(element);
+    // 3)  Note: Use createRoot instead of ReactDOM https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
+      ReactDOM.render(element,rootElement);
   </script>
+</body>
+
+
+
+<!-- Extra Credit -->
+
+<body>
+  <div id="root">
+    <div className="container">
+      <span>Hello</span>
+      <span>World</span>
+      <span>Jude*</span>
+    </div>
+  </div>
 </body>
