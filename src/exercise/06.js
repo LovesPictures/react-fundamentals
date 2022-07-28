@@ -1,14 +1,17 @@
 // Basic Forms
 // http://localhost:3000/isolated/exercise/06.js
 
-import * as React from 'react'
+import React, {useState} from 'react'
+// import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
-  const [error, setError] = React.useState(null)
+  //destructure an array or object
+  // const {useState} = React
+  const [error, setError] = useState(null)
 
   function handleSubmit(event) {
     // this is to prevent a full page refresh onsubmit
-    error.preventDefault()
+    event.preventDefault()
     // console.dir()
     onSubmitUsername(event.target.elements.usernameInput.value)
   }
@@ -17,6 +20,7 @@ function UsernameForm({onSubmitUsername}) {
   function handleChange(event) {
     const {value} = event.target
     const isLowerCase = value === value.toLowerCase()
+    //Note: 3 part of the ternary condition ? return value if condition is true : else return this
     setError(isLowerCase ? null : 'Username must be lower case')
   }
 
