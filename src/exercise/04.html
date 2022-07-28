@@ -6,16 +6,85 @@
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
-  <script type="text/babel">
-    // 🐨 Make a function called `message` which returns the JSX we want to share
+  <!-- provides a prop type global variable for validation  -->
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 
+  <script type="text/babel">
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
-    const element = (
-      <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
+
+    console.log('exercise ' + 1)
+    // -------------------------------------
+    // 🐨 Make a function called `message` which returns the JSX we want to share
+    // Note: creating abstraction - why? pulling things into function
+
+    // -------------------------------------
+    // option 1
+    // function message({children}) {
+    //   return <div className="message">{children}</div>
+    // }
+
+    // create a React element with the 'type of div' to interpolate the function
+    // call the new message function in {} an interpolation of an expression
+
+    // const element = (
+    //   <div className="container">
+
+    //     {message({message, children: 'Hello World 1'})}
+    //     {message({children: 'Goodbye world 1'})}
+    //   </div>
+    // )
+    // -------------------------------------
+
+    console.log('exercise ' + 'extra credit 1')
+    // create a message type by using the react.createElement API directly
+    //an element is created when we create a function with the 'type of Message' which has implications for - custom element - creation
+
+    // -------------------------------------
+    // option 2
+    // function message({children}) {
+    //   return <div className="message">{children} </div>
+    // }
+
+    // create a React element with the 'type of message'
+    // const element = (
+    //   <div className="container">
+    //     {React.createElement(message, {children: 'Hello world 2'})}
+    //     {React.createElement(message, {children: 'goodbye world 2 '})}
+    //   </div>
+    // )
+
+    console.log('exercise ' + 'extra credit 2')
+
+    // -------------------------------------
+    // solution 3 - production only 'prop type validators' are removed from the production code
+    // validating prop types
+
+    // -------------------------------------
+    // solution 4 - production  'prop type validators'
+    // validating prop types
+
+
+    function message({subject, greeting}) {
+      return (
+      <div className="message">
+        {greeting}, {subject}
       </div>
+      )
+    }
+
+    // Install <script> at the top or npm install -  using prop.types to check ?
+    Message.propTypes = {
+      subject: PropTypes.string.isRequired,
+      greeting: PropType.string.isRequired,
+    }
+
+    const element = (
+      // <> is compiled as <React.Fragment> in the DOM and allows for the rendering of two things side by side
+      <>
+        <Message greeting= "Hello" />
+        <Message subject= "Goodbye" />
+      </>
     )
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
